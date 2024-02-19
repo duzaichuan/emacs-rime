@@ -2,7 +2,7 @@
 
 ;; Author: Shi Tianshu
 ;; Keywords: convenience, input-method
-;; Package-Requires: ((emacs "26.3") (dash "2.17.0") (cl-lib "0.6.1"))
+;; Package-Requires: ((emacs "26.3") (cl-lib "0.6.1"))
 ;; Version: 1.0.5
 ;; URL: https://www.github.com/DogLooksGood/emacs-rime
 ;;
@@ -134,7 +134,6 @@
 
 (require 'seq)
 (require 'subr-x)
-(require 'dash)
 (require 'cl-lib)
 (require 'popup nil t)
 (require 'posframe nil t)
