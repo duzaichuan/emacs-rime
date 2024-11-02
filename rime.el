@@ -677,7 +677,7 @@ Currently just deactivate input method."
                                  (if curr
                                     (propertize (car c) 'face 'rime-highlight-candidate-face)
                                   (propertize (car c) 'face 'rime-default-face))
-                                 (if-let (comment (cdr c))
+                                 (if-let* ((comment (cdr c)))
                                      (propertize (format " %s" comment) 'face 'rime-comment-face)
                                    ""))))
           (setq result (concat result
@@ -891,6 +891,7 @@ By default the input-method will not handle DEL, so we need this command."
                   (prior #xff55)
                   (next #xff56)
                   (delete #xffff)
+                  (escape #xff1b)
                   (t key-raw))))
          (mask (cdr parsed)))
     (unless (numberp key)
@@ -1016,7 +1017,8 @@ You can customize the color with `rime-indicator-face' and `rime-indicator-dim-f
      (if rime-librime-root
          (format "LIBRIME_ROOT=%s" (file-name-as-directory (expand-file-name rime-librime-root))))
      (if rime-emacs-module-header-root
-         (format "EMACS_MODULE_HEADER_ROOT=%s" (file-name-as-directory (expand-file-name rime-emacs-module-header-root))))
+         (format "EMACS_MODULE_HEADER_ROOT=%s" (shell-quote-argument
+                                                (file-name-as-directory (expand-file-name rime-emacs-module-header-root)))))
      (format "MODULE_FILE_SUFFIX=%s" module-file-suffix))))
 
 (defun rime-compile-module ()
